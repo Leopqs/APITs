@@ -1,12 +1,12 @@
 import express from "express";
-import EmployeeController from "../controllers/EmployeeController";
+import JogoController from "../controllers/JogoController";
 
 const router = express.Router();
 
-router.get("/employee", EmployeeController.getAllEmployee);
-router.get("/employee/:id", EmployeeController.getEmployee);
-router.post("/employee", EmployeeController.createEmployee);
-router.put("/employee/:id", EmployeeController.updateEmployee);
-router.delete("/employee/:id", EmployeeController.deleteEmployee);
+router.get("/jogos", JogoController.getAllJogos);
+router.get("/jogos/:id", JogoController.getJogo);
+router.post("/jogos", JogoController.createJogo);
+router.put("/jogos/:id", JogoController.updateJogo);
+router.delete("/jogos/:id", JogoController.deleteJogo);
 
 export default router;
