@@ -1,18 +1,12 @@
 import express from "express";
-import mongoose from "mongoose";
+import EmployeeController from "../controllers/EmployeeController";
 
-const app = express();
-app.use(express.json());
+const router = express.Router();
 
-const MONGO_URL = "mongodb://127.0.0.1:27017";
-mongoose.connect(MONGO_URL, {
-    dbName: "node-typescript-app",
-})  
-    .then(() => {
-        console.log("Database connected");
-    })
-    .catch((error) => console.log(error));
+router.get("/employee", EmployeeController.getAllEmployee);
+router.get("/employee/:id", EmployeeController.getEmployee);
+router.post("/employee", EmployeeController.createEmployee);
+router.put("/employee/:id", EmployeeController.updateEmployee);
+router.delete("/employee/:id", EmployeeController.deleteEmployee);
 
-app.listen(4000, () => {
-    console.log("Server is running on http://localhost:4000");
-});
+export default router;
