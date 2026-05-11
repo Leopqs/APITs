@@ -2,10 +2,11 @@
   "name": "apits",
   "version": "1.0.0",
   "description": "Api em type script para a atividade de mobile",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts"
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,12 @@
   "dependencies": {
     "@types/express": "^5.0.6",
     "@types/mongoose": "^5.11.96",
+    "build": "^0.1.4",
     "express": "^5.2.1",
     "mongoose": "^9.6.2",
     "nodemon": "^3.1.14",
+    "npm": "^11.14.1",
+    "run": "^1.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }
