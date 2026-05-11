@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const JogoController_1 = __importDefault(require("../controllers/JogoController"));
+const UserController_1 = __importDefault(require("../controllers/UserController"));
 const router = express_1.default.Router();
-router.post("/login", JogoController_1.default.createLogin);
+router.post("/login", UserController_1.default.getUser);
 router.get("/jogos", JogoController_1.default.getAllJogos);
 router.get("/jogos/:id", JogoController_1.default.getJogo);
 router.post("/jogos", JogoController_1.default.createJogo);

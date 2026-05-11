@@ -10,23 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jogo_1 = require("../db/jogo");
-const user_1 = require("../db/user");
 class JogoController {
     constructor() {
-        this.createLogin = (request, response) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { email, password } = request.body;
-                const user = new user_1.UserModel({
-                    email,
-                    password
-                });
-                yield user.save();
-                return response.status(200).json({ Token: user._id });
-            }
-            catch (error) {
-                return response.sendStatus(400);
-            }
-        });
         this.getAllJogos = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const jogos = yield jogo_1.JogoModel.find();
