@@ -75,7 +75,7 @@ class JogoController {
             try {
                 console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
                 const { id } = request.params;
-                yield jogo_1.JogoModel.findByIdAndDelete({ id });
+                yield jogo_1.JogoModel.findByIdAndDelete(id);
                 console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
                 return response.status(204);
             }

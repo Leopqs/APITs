@@ -64,7 +64,7 @@ class JogoController {
         try{
             console.log("Estado do mongoose:", mongoose.connection.readyState);
             const {id} = request.params;
-            await JogoModel.findByIdAndDelete({id});
+            await JogoModel.findByIdAndDelete(id);
             console.log("Estado do mongoose:", mongoose.connection.readyState);
             return response.status(204);
 
