@@ -1,9 +1,10 @@
 import express from "express";
 import JogoController from "../controllers/JogoController";
+import UserController from "../controllers/UserController";
 
 const router = express.Router();
 
-router.post("/login", JogoController.createLogin);
+router.get("/login", UserController.getUser);
 router.get("/jogos", JogoController.getAllJogos);
 router.get("/jogos/:id", JogoController.getJogo);
 router.post("/jogos", JogoController.createJogo);

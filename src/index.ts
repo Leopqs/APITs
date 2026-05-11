@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import router from "./routers";
+import { UserModel } from "./db/user";
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,17 @@ mongoose.connect(MONGO_URL, {
 
 app.use("/", router);
 
-console.log("Servidor rodando...");
+async function criarUserInicial() {
+  const existe = await UserModel.countDocuments();
+
+  if (existe === 0) {
+    await UserModel.create({ 
+        "email": "usuario@esoft.com", 
+        "password": "Abc123" 
+    });
+    console.log('Usuário inicial criado');
+  }
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
