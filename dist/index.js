@@ -19,7 +19,7 @@ const user_1 = require("./db/user");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const PORT = process.env.PORT || 3000;
-const MONGO_URL = "mongodb+srv://Leopqs:<Pazin@2005>@baseapi.cb7guh8.mongodb.net/?appName=BaseAPI";
+const MONGO_URL = process.env.MONGO_URL;
 function criarUserInicial() {
     return __awaiter(this, void 0, void 0, function* () {
         const existe = yield user_1.UserModel.countDocuments();
