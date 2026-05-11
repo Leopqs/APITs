@@ -5,9 +5,10 @@ import { UserModel } from "./db/user";
 
 const app = express();
 app.use(express.json());
+app.use("/", router);
 
-const PORT = process.env.PORT || 3000;
-const MONGO_URL = "mongodb://Leopqs:ovhpdP2H3GD5VEKA@ac-kstemby-shard-00-00.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-01.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-02.7zy3dyw.mongodb.net:27017/?ssl=true&replicaSet=atlas-tmszjr-shard-0&authSource=admin&appName=Cluster0";
+const PORT = Number(process.env.PORT) || 3000;
+const MONGO_URL = process.env.MONGO_URL;
 
 async function criarUserInicial() {
   const existe = await UserModel.countDocuments();
@@ -21,7 +22,7 @@ async function criarUserInicial() {
   }
 }
 
-async function startServer() {
+async function conectarBanco() {
   try {
     if (!MONGO_URL) {
       throw new Error("Variável MONGO_URL não definida");
@@ -32,17 +33,13 @@ async function startServer() {
     });
 
     console.log("Banco de dados conectado.");
-
     await criarUserInicial();
-
-    app.use("/", router);
-
-    app.listen(PORT, () => {
-      console.log(`Servidor rodando na porta ${PORT}`);
-    });
   } catch (error) {
-    console.error("Erro ao iniciar a API:", error);
+    console.error("Erro ao conectar no banco:", error);
   }
 }
 
-startServer();
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+  conectarBanco();
+});

@@ -18,8 +18,9 @@ const routers_1 = __importDefault(require("./routers"));
 const user_1 = require("./db/user");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-const PORT = process.env.PORT || 3000;
-const MONGO_URL = "mongodb://Leopqs:ovhpdP2H3GD5VEKA@ac-kstemby-shard-00-00.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-01.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-02.7zy3dyw.mongodb.net:27017/?ssl=true&replicaSet=atlas-tmszjr-shard-0&authSource=admin&appName=Cluster0";
+app.use("/", routers_1.default);
+const PORT = Number(process.env.PORT) || 3000;
+const MONGO_URL = process.env.MONGO_URL;
 function criarUserInicial() {
     return __awaiter(this, void 0, void 0, function* () {
         const existe = yield user_1.UserModel.countDocuments();
@@ -32,7 +33,7 @@ function criarUserInicial() {
         }
     });
 }
-function startServer() {
+function conectarBanco() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (!MONGO_URL) {
@@ -43,15 +44,14 @@ function startServer() {
             });
             console.log("Banco de dados conectado.");
             yield criarUserInicial();
-            app.use("/", routers_1.default);
-            app.listen(PORT, () => {
-                console.log(`Servidor rodando na porta ${PORT}`);
-            });
         }
         catch (error) {
-            console.error("Erro ao iniciar a API:", error);
+            console.error("Erro ao conectar no banco:", error);
         }
     });
 }
-startServer();
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+    conectarBanco();
+});
 //# sourceMappingURL=index.js.map
