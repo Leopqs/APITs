@@ -16,6 +16,8 @@ mongoose.connect(MONGO_URL, {
 
 app.use("/", router);
 
+console.log("Servidor rodando...");
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
