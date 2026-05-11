@@ -19,7 +19,7 @@ const user_1 = require("./db/user");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const PORT = process.env.PORT || 3000;
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = "mongodb://Leopqs:ovhpdP2H3GD5VEKA@ac-kstemby-shard-00-00.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-01.7zy3dyw.mongodb.net:27017,ac-kstemby-shard-00-02.7zy3dyw.mongodb.net:27017/?ssl=true&replicaSet=atlas-tmszjr-shard-0&authSource=admin&appName=Cluster0";
 function criarUserInicial() {
     return __awaiter(this, void 0, void 0, function* () {
         const existe = yield user_1.UserModel.countDocuments();
