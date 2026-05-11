@@ -10,13 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../db/user");
+const crypto_1 = require("crypto");
 class UserController {
     constructor() {
         this.getUser = (request, response) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { email, password } = request.body;
                 const user = yield user_1.UserModel.findOne({ email, password });
-                return response.status(200).json({ Id: user === null || user === void 0 ? void 0 : user.id });
+                if (user) {
+                    const token = (0, crypto_1.randomUUID)();
+                    return response.status(200).json({
+                        token,
+                    });
+                }
             }
             catch (error) {
                 return response.sendStatus(400);

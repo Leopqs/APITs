@@ -1,5 +1,6 @@
 import express from 'express';
 import { UserModel } from '../db/user';
+import { randomUUID } from "crypto";
 
 class UserController {
 
@@ -7,7 +8,12 @@ class UserController {
             try{
                 const {email, password} = request.body;
                 const user = await UserModel.findOne({ email, password });
-                return response.status(200).json({Id: user?.id});
+                if(user){
+                    const token = randomUUID();
+                    return response.status(200).json({
+                    token,
+                    });
+                }
             }catch (error){
                 return response.sendStatus(400);
             }

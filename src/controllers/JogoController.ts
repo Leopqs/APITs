@@ -1,5 +1,6 @@
 import express from 'express';
 import { JogoModel} from '../db/jogo';
+import mongoose from "mongoose";
 
 class JogoController {
 
@@ -61,6 +62,7 @@ class JogoController {
     deleteJogo = async (request: express.Request, response: express.Response) => {
         try{
             const {id} = request.params;
+            console.log("Estado do mongoose:", mongoose.connection.readyState);
             await JogoModel.findByIdAndDelete({_id: id});
             return response.status(204);
 
