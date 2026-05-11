@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Leopqs/APITs.git"

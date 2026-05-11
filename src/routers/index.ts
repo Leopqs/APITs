@@ -4,7 +4,7 @@ import UserController from "../controllers/UserController";
 
 const router = express.Router();
 
-router.get("/login", UserController.getUser);
+router.post("/login", UserController.getUser);
 router.get("/jogos", JogoController.getAllJogos);
 router.get("/jogos/:id", JogoController.getJogo);
 router.post("/jogos", JogoController.createJogo);
