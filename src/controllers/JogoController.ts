@@ -60,10 +60,12 @@ class JogoController {
     }
 
     deleteJogo = async (request: express.Request, response: express.Response) => {
-        try{
-            const {id} = request.params;
             console.log("Estado do mongoose:", mongoose.connection.readyState);
+        try{
+            console.log("Estado do mongoose:", mongoose.connection.readyState);
+            const {id} = request.params;
             await JogoModel.findByIdAndDelete({_id: id});
+            console.log("Estado do mongoose:", mongoose.connection.readyState);
             return response.status(204);
 
         }catch (error){

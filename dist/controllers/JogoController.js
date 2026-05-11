@@ -71,10 +71,12 @@ class JogoController {
             }
         });
         this.deleteJogo = (request, response) => __awaiter(this, void 0, void 0, function* () {
+            console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
             try {
-                const { id } = request.params;
                 console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
+                const { id } = request.params;
                 yield jogo_1.JogoModel.findByIdAndDelete({ _id: id });
+                console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
                 return response.status(204);
             }
             catch (error) {
