@@ -16,6 +16,7 @@ mongoose.connect(MONGO_URL, {
 
 app.use("/", router);
 
-app.listen(4000, () => {
-    console.log("Servidor está conectadoem http://localhost:4000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
