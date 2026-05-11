@@ -8,12 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const jogo_1 = require("../db/jogo");
-const mongoose_1 = __importDefault(require("mongoose"));
 class JogoController {
     constructor() {
         this.getAllJogos = (request, response) => __awaiter(this, void 0, void 0, function* () {
@@ -71,13 +67,10 @@ class JogoController {
             }
         });
         this.deleteJogo = (request, response) => __awaiter(this, void 0, void 0, function* () {
-            console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
             try {
-                console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
                 const { id } = request.params;
-                yield jogo_1.JogoModel.findByIdAndDelete(id);
-                console.log("Estado do mongoose:", mongoose_1.default.connection.readyState);
-                return response.status(204);
+                yield jogo_1.JogoModel.findByIdAndDelete({ _id: id });
+                return response.sendStatus(204);
             }
             catch (error) {
                 return response.sendStatus(400);
