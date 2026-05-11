@@ -10,12 +10,12 @@ mongoose.connect(MONGO_URL, {
     dbName: "node-typescript-app",
 })  
     .then(() => {
-        console.log("Database connected");
+        console.log("Banco de dados conectado. ");
     })
     .catch((error) => console.log(error));
 
 app.use("/", router);
 
 app.listen(4000, () => {
-    console.log("Server is running on http://localhost:4000");
+    console.log("Servidor está conectadoem http://localhost:4000");
 });

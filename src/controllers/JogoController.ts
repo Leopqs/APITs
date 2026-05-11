@@ -1,7 +1,22 @@
 import express from 'express';
 import { JogoModel} from '../db/jogo';
+import { UserModel } from '../db/user';
 
 class JogoController {
+
+    createLogin = async (request: express.Request, response: express.Response) => {
+        try{
+            const {email, password} = request.body;
+            const user = new UserModel({
+                email,
+                password
+            });
+            await user.save();
+            return response.status(200).json({Token: user._id});
+        }catch (error){
+            return response.sendStatus(400);
+        }
+    }
 
     getAllJogos = async (request: express.Request, response: express.Response) => {
         try{
