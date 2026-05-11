@@ -2,7 +2,7 @@
   "name": "apits",
   "version": "1.0.0",
   "description": "Api em type script para a atividade de mobile",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts"
